@@ -1,71 +1,79 @@
 @charset "UTF-8";
+
 /* 整个项目都能使用上的样式 */
+
 html,
 body {
-  height: 100%;
-  background: papayawhip;
+    height: 100%;
+    background: papayawhip;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .gao-head {
-  display: flex;
-  height: 50px;
-  border-bottom: 1px solid #000;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    height: 50px;
+    border-bottom: 1px solid #000;
+    justify-content: space-between;
+    align-items: center;
 }
+
 .gao-head .logo {
-  font-size: 26px;
-  text-decoration: none;
+    font-size: 26px;
+    text-decoration: none;
 }
+
 .gao-head .right {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .gao-menu {
-  width: 220px;
-  height: 100%;
-  border-right: 1px solid pink;
-  overflow-y: auto;
+    width: 220px;
+    height: 100%;
+    border-right: 1px solid pink;
+    overflow-y: auto;
 }
+
 .gao-menu li {
-  height: 40px;
-  width: 220px;
-  line-height: 40px;
-  border-bottom: 1px solid #000;
+    height: 40px;
+    width: 220px;
+    line-height: 40px;
+    border-bottom: 1px solid #000;
 }
 
 .gao-main {
-  flex: 1;
-  display: flex;
-  background: white;
+    flex: 1;
+    display: flex;
+    background: white;
 }
+
 .gao-main .body {
-  flex: 1;
-  padding: 0 20px;
+    flex: 1;
+    padding: 0 20px;
 }
 
 .search-bar {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .gao-foot {
-  height: 50px;
-  border-top: 1px solid #000;
+    height: 50px;
+    color: orange;
+    border-top: 1px solid #000;
 }
 
-.table-hover > tbody > tr:hover {
-  background: aquamarine;
+.table-hover>tbody>tr:hover {
+    background: aquamarine;
 }
 
 .pagination {
-  float: right;
+    float: right;
 }
+
 
 /*# sourceMappingURL=common.css.map */

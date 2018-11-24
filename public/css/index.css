@@ -1,1 +1,21 @@
+@charset "UTF-8";
+
 /* 首页的样式 */
+
+.body h1 {
+    margin: 20px 0;
+    color: coral;
+    text-align: center;
+}
+
+.body .img {
+    flex: 1;
+    height: 600px;
+}
+
+.body .img img {
+    width: 100%;
+}
+
+
+/*# sourceMappingURL=index.css.map */

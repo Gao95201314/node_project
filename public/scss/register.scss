@@ -1,0 +1,25 @@
+/* 登录页面样式 */
+
+body {
+    background: azure;
+}
+
+.adminregister {
+    position: relative;
+    margin: 100px auto;
+    width: 500px;
+    height: 300px;
+    border: 1px solid #CCC;
+    text-align: center;
+    #btn {
+        display: block;
+        position: absolute;
+        background: burlywood;
+        right: 140px;
+        width: 60px;
+        color: white;
+    }
+    h4 {
+        color: pink;
+    }
+}

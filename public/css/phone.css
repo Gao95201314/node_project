@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/* 手机管理样式 */
+.gao-main {
+  flex: 1;
+  display: flex;
+  background: white; }
+  .gao-main .body {
+    flex: 1;
+    padding: 0; }
+    .gao-main .body .addPhone {
+      height: 50px;
+      width: 100%;
+      margin: 0 0 20px 0;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center; }
+      .gao-main .body .addPhone button {
+        margin-left: 20px; }
+    .gao-main .body .phonetable {
+      margin: 0 20px; }
+      .gao-main .body .phonetable table {
+        text-align: center; }
+        .gao-main .body .phonetable table thead th {
+          text-align: center; }
+        .gao-main .body .phonetable table tbody th {
+          text-align: center; }
+    .gao-main .body .phonenav {
+      margin-right: 20px; }
+
+/*# sourceMappingURL=phone.css.map */

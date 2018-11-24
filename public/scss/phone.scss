@@ -1,0 +1,37 @@
+/* 手机管理样式 */
+
+.gao-main {
+    flex: 1;
+    display: flex;
+    background: white;
+    .body {
+        flex: 1;
+        padding: 0;
+        .addPhone {
+            height: 50px;
+            width: 100%;
+            margin: 0 0 20px 0;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            button {
+                margin-left: 20px;
+            }
+        }
+        .phonetable {
+            margin: 0 20px;
+            table {
+                text-align: center;
+                thead th {
+                    text-align: center;
+                }
+                tbody th {
+                    text-align: center;
+                }
+            }
+        }
+        .phonenav {
+            margin-right: 20px;
+        }
+    }
+}

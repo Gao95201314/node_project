@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/*  品牌管理样式 */
+.gao-main {
+  flex: 1;
+  display: flex;
+  background: white; }
+  .gao-main .body {
+    flex: 1;
+    padding: 0; }
+    .gao-main .body .addGrand {
+      height: 50px;
+      width: 100%;
+      margin: 0 0 20px 0;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center; }
+      .gao-main .body .addGrand button {
+        margin-left: 20px; }
+    .gao-main .body .grandtable {
+      margin: 0 20px; }
+      .gao-main .body .grandtable table {
+        text-align: center; }
+        .gao-main .body .grandtable table thead th {
+          text-align: center; }
+        .gao-main .body .grandtable table tbody th {
+          text-align: center; }
+    .gao-main .body .grandnav {
+      margin-right: 20px; }
+
+/*# sourceMappingURL=grand.css.map */

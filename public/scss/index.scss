@@ -1,1 +1,16 @@
 /* 首页的样式 */
+
+.body {
+    h1 {
+        margin: 20px 0;
+        color: coral;
+        text-align: center;
+    }
+    .img {
+        flex: 1;
+        height: 600px;
+        img {
+            width: 100%;
+        }
+    }
+}
