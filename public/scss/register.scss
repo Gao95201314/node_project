@@ -7,10 +7,10 @@ body {
 .adminregister {
     position: relative;
     margin: 100px auto;
-    width: 500px;
-    height: 300px;
+    width: 375px;
+    height: 425px;
     border: 1px solid #CCC;
-    text-align: center;
+    padding-left: 125px;
     #btn {
         display: block;
         position: absolute;
@@ -21,5 +21,11 @@ body {
     }
     h4 {
         color: pink;
+        margin-left: 100px;
+    }
+    a {
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 }

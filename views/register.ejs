@@ -14,10 +14,36 @@
     <div class="adminregister">
         <h1>xxx后台管理系统</h1>
         <h4>注册</h4>
-        <form action="/">
-            <p><label for="name">用户名：<input type="text" placeholder="" id="name" name="name"></label></p>
-            <p></p><label for="pwd">密&nbsp&nbsp&nbsp码：<input type="password" id="pwd" name="pwd"></label></p>
+        <form action="/users/register" method="POST">
+            <p>
+                <label for="name">
+                用户名：<input type="text" placeholder="请输入用户名" id="name" name="name">
+            </label>
+            </p>
+            <p>
+                <label for="pwd">
+                    密&nbsp&nbsp&nbsp码：<input type="password" placeholder="请输入密码" id="pwd" name="pwd">
+                </label>
+            </p>
+            <p>
+                <label for="pwd">
+                    昵&nbsp&nbsp&nbsp称：<input type="text" placeholder="请输入昵称" id="nickname" name="nickname"></label></p>
+            <p>
+                <label for="pwd">
+                年&nbsp&nbsp&nbsp龄：<input type="text" placeholder="请输入年龄" id="age" name="age"></label>
+            </p>
+            <p><label for="pwd">
+                性&nbsp&nbsp&nbsp别：<input type="radio" id="sex" name="sex" checked>
+                <input type="radio" id="sex" name="sex">
+            </label>
+            </p>
+            <p><label for="pwd">
+                管理员： <input type="radio" name="isAdmin" value="是"> 是
+                <input type="radio" name="isAdmin" value="否" checked> 否
+            </label>
+            </p>
             <input type="submit" name="" id="btn" value="注册">
+            <a href="/">已有账号，立即登陆</a>
         </form>
     </div>
 </body>

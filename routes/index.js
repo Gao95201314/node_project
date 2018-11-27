@@ -9,11 +9,11 @@ router.get('/register.html', function(req, res, next) {
     res.render('register');
 });
 router.get('/index.html', function(req, res, next) {
-    res.render('index', { title: 'Express' }); //index.ejs文件后缀可省略
+    res.render('index'); //index.ejs文件后缀可省略
 });
-router.get('/users.html', function(req, res, next) {
+/* router.get('/users.html', function(req, res, next) {
     res.render('users');
-});
+}); */
 router.get('/grand.html', function(req, res, next) {
     res.render('grand');
 });
