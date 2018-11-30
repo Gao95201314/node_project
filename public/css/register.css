@@ -1,39 +1,28 @@
 @charset "UTF-8";
-
 /* 登录页面样式 */
-
 body {
-    background: azure;
-}
+  background: azure; }
 
 .adminregister {
-    position: relative;
-    margin: 100px auto;
-    width: 375px;
-    height: 425px;
-    border: 1px solid #CCC;
-    padding-left: 125px;
-}
-
-.adminregister #btn {
+  position: relative;
+  margin: 100px auto;
+  width: 375px;
+  height: 425px;
+  border: 1px solid #CCC;
+  padding-left: 125px; }
+  .adminregister #btn {
     display: block;
     position: absolute;
     background: burlywood;
     right: 140px;
     width: 60px;
-    color: white;
-}
-
-.adminregister h4 {
+    color: white; }
+  .adminregister h4 {
     color: pink;
-    margin-left: 100px;
-}
-
-.adminregister a {
+    margin-left: 100px; }
+  .adminregister a {
     position: absolute;
     bottom: 0;
-    right: 0;
-}
-
+    right: 0; }
 
 /*# sourceMappingURL=register.css.map */

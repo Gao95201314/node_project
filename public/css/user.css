@@ -1,9 +1,9 @@
+@charset "UTF-8";
 /* 用户管理样式 */
-
-.table-hover>tbody>tr:hover {
-    background: aquamarine;
-}
+.table-hover > tbody > tr:hover {
+  background: aquamarine; }
 
 .pagination {
-    float: right;
-}
+  float: right; }
+
+/*# sourceMappingURL=user.css.map */
