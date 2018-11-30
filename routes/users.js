@@ -148,7 +148,7 @@ router.post('/login', function(req, res) {
                 } else {
                     //登录成功
                     //cookier操作
-                    res.cookie('nickname', data[0].nickname, {
+                    res.cookie('nickname', data[0].username, {
                         maxAge: 60 * 60 * 1000 //毫秒
                     })
                     res.redirect('/index.html');

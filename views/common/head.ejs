@@ -3,7 +3,17 @@
         <a href="/" class="logo">XXX后台管理系统</a>
     </div>
     <div class="right">
-        <p>欢迎你admin管理员</p>
-        <button class="btn btn-primary back">退出</button>
+        <p>欢迎你<span class="span">xxx</span>管理员</p>
+        <form action="/head/quit">
+            <input type="submit" value="退出" id="btn" class="btn btn-primary" />
+        </form>
     </div>
 </div>
+<script>
+    var cookieVal = document.cookie;
+    var cookieArr = cookieVal.split(";");
+    var newArr = cookieArr[0].split("=")[1];
+    // console.log(newArr);
+    var span = document.getElementsByClassName('span')[0];
+    span.innerHTML = newArr;
+</script>
