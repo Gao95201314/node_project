@@ -18,10 +18,9 @@
             <div class="gao-main">
                 <%- include('./common/menu.ejs') %>
                     <div class="body">
-                        <form class="form-inline search-bar" action="/users/search">
-                            <input type="text" class="form-control" name="name">
-                            <input type="submit" value="搜索" id="btn" class="btn btn-primary" />
-
+                        <form class="form-inline search-bar">
+                            <input type="text" class="form-control">
+                            <button class="btn btn-primary">搜索</button>
                         </form>
                         <table class="table table-bordered table-hover table-striped ">
                             <thead>
@@ -66,34 +65,10 @@
                                     <%}%>
                             </tbody>
                         </table>
-                        <nav>
-                            <ul class="pagination ">
-                                <li>
-                                    <a href="/users?page=<%=currentPage-1<1?1:currentPage-1%>&pageSize=<%=pageSize%>" aria-label="Previous ">
-                                        <span aria-hidden="true ">&laquo;</span>
-                                    </a>
-                                </li>
-                                <%for(var i=0;i<totalPage;i++){%>
-                                    <li class="<%=currentPage===(i+1)?'active':''%>">
-                                        <a href="/users?page=<%=i+1%>&pageSize=<%=pageSize%>">
-                                            <%=i+1%>
-                                        </a>
-                                    </li>
-                                    <%}%>
-                                        <li>
-                                            <a href="/users?page=<%=currentPage+1>totalPage?totalPage:currentPage+1%>&pageSize=<%=pageSize%>" aria-label="Next ">
-                                                <span aria-hidden="true ">&raquo;</span>
-                                            </a>
-                                        </li>
-                            </ul>
-                        </nav>
                     </div>
             </div>
             <%- include('./common/foot') %>
     </div>
 </body>
-
-
-
 
 </html>

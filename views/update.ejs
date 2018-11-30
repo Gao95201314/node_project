@@ -81,7 +81,25 @@
                                 </tbody>
                             </table>
                         </div>
-
+                        <div class="update">
+                            <h2>修改</h2>
+                            <form action="/phone/updatephone" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="phoneid" value="<%=list2[0]._id%>" />
+                                </br>
+                                手机名称：<input type="text" name="phonename" value="<%=list2[0].phonename%>" />
+                                </br>
+                                所属品牌：<input type="text" name="phonegrand" value="<%=list2[0].phonegrand%>" />
+                                </br>
+                                &nbsp;&nbsp;官方价：&nbsp;&nbsp;<input type="text" name="phoneprice" value="<%=list2[0].phoneprice%>" />
+                                </br>
+                                &nbsp;&nbsp;回收价：&nbsp;<input type="text" name="phoneoldprice" value="<%=list2[0].phoneoldprice%>" />
+                                </br>
+                                </br>
+                                图片：<input type="file" name="phoneimg" id="phoneimg" />
+                                <input type="submit" value="确认" class="sure1" />
+                                <input type="button" name="" class="no1" value="取消">
+                            </form>
+                        </div>
                         <nav class="phonenav">
                             <ul class="pagination ">
                                 <li>

@@ -5,6 +5,7 @@
   display: flex;
   background: white; }
   .gao-main .body {
+    position: relative;
     flex: 1;
     padding: 0; }
     .gao-main .body .addPhone {
@@ -23,8 +24,69 @@
         .gao-main .body .phonetable table thead th {
           text-align: center; }
         .gao-main .body .phonetable table tbody th {
-          text-align: center; }
+          text-align: center;
+          vertical-align: middle; }
+        .gao-main .body .phonetable table tbody td {
+          text-align: center;
+          vertical-align: middle; }
+          .gao-main .body .phonetable table tbody td .a1 {
+            color: cadetblue; }
+            .gao-main .body .phonetable table tbody td .a1:hover {
+              color: red; }
+          .gao-main .body .phonetable table tbody td .a2 {
+            color: cadetblue; }
+            .gao-main .body .phonetable table tbody td .a2:hover {
+              color: red; }
+        .gao-main .body .phonetable table tbody img {
+          width: 150px;
+          height: 150px;
+          vertical-align: middle; }
     .gao-main .body .phonenav {
+      float: right;
       margin-right: 20px; }
+    .gao-main .body .filter {
+      z-index: 10;
+      position: absolute;
+      border: 1px solid #ccc;
+      left: 200px;
+      top: 20px;
+      height: 400px;
+      width: 400px;
+      background: white;
+      padding: 20px 20px 20px 50px;
+      display: none; }
+      .gao-main .body .filter h2 {
+        color: pink;
+        font-size: 20px;
+        text-align: center; }
+      .gao-main .body .filter input {
+        margin-top: 20px; }
+      .gao-main .body .filter #sure {
+        background: aqua; }
+      .gao-main .body .filter #no {
+        background: aqua; }
+    .gao-main .body .update {
+      z-index: 10;
+      position: absolute;
+      border: 1px solid #ccc;
+      left: 200px;
+      top: 20px;
+      height: 450px;
+      width: 450px;
+      background: white;
+      padding: 20px 20px 20px 50px; }
+      .gao-main .body .update h2 {
+        color: pink;
+        font-size: 20px;
+        text-align: center; }
+      .gao-main .body .update input {
+        margin-top: 20px;
+        width: 230px; }
+      .gao-main .body .update .sure1 {
+        background: aqua;
+        width: 50px; }
+      .gao-main .body .update .no1 {
+        background: aqua;
+        width: 50px; }
 
 /*# sourceMappingURL=phone.css.map */

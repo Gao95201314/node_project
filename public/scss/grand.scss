@@ -5,6 +5,7 @@
     display: flex;
     background: white;
     .body {
+        position: relative;
         flex: 1;
         padding: 0;
         .addGrand {
@@ -27,11 +28,52 @@
                 }
                 tbody th {
                     text-align: center;
+                    vertical-align: middle;
+                }
+                tbody td {
+                    text-align: center;
+                    vertical-align: middle;
+                    .a1 {
+                        &:hover {
+                            color: red;
+                        }
+                    }
+                }
+                tbody img {
+                    width: 150px;
+                    height: 150px;
+                    vertical-align: middle;
                 }
             }
         }
         .grandnav {
+            float: right;
             margin-right: 20px;
+        }
+        .filter {
+            position: absolute;
+            border: 1px solid #ccc;
+            left: 200px;
+            top: 20px;
+            height: 300px;
+            width: 350px;
+            background: white;
+            padding: 20px 20px 20px 50px;
+            display: none;
+            h2 {
+                color: pink;
+                font-size: 20px;
+                text-align: center;
+            }
+            input {
+                margin-top: 20px;
+            }
+            #sure {
+                background: aqua;
+            }
+            #no {
+                background: aqua;
+            }
         }
     }
 }

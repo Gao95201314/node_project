@@ -19,63 +19,73 @@
                 <%- include('./common/menu.ejs') %>
                     <div class="body">
                         <div class="addGrand">
-                            <button type="button" class="btn btn-info">新增品牌</button>
+                            <button type="button" class="btn btn-info addgrand">新增品牌</button>
+                        </div>
+                        <div class="filter">
+                            <h2>新增</h2>
+                            <form action="/grand/addgrand" method="POST" enctype="multipart/form-data">
+                                品牌名称：<input type="text" name="grandname" id="grandname" />
+                                </br>
+                                品牌LOGO：<input type="file" name="grandlogo" id="grandlogo" />
+                                <input type="submit" value="确认" id="sure" />
+                                <input type="button" name="" id="no" value="取消">
+                            </form>
                         </div>
                         <div class="grandtable">
                             <table class="table table-bordered ">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
+                                        <th>序号</th>
+                                        <th>品牌Logo</th>
+                                        <th>品牌名称</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <%for(var i=0;i<list.length;i++){%>
+                                        <tr>
+                                            <th scope="row">
+                                                <%=i+1%>
+                                            </th>
+                                            <td>
+                                                <img src="/<%=list[i].grandlogo%>" alt="">
+                                            </td>
+                                            <td>
+                                                <%=list[i].grandname%>
+                                            </td>
+                                            <td> <a href="/grand/delete?id=<%= list[i]._id %>" class="a1">删除</a></td>
+                                        </tr>
+                                        <%}%>
                                 </tbody>
                             </table>
                         </div>
-                        <nav>
-                            <ul class="pagination grandnav">
+                        <nav class="grandnav">
+                            <ul class="pagination ">
                                 <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
+                                    <a href="/grand/grand.html?page=<%=currentPage-1<1?1:currentPage-1%>&pageSize=<%=pageSize%>" aria-label="Previous ">
+                                        <span aria-hidden="true ">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
+                                <%for(var i=0;i<totalPage;i++){%>
+                                    <li class="<%=currentPage===(i+1)?'active':''%>">
+                                        <a href="/grand/grand.html?page=<%=i+1%>&pageSize=<%=pageSize%>">
+                                            <%=i+1%>
+                                        </a>
+                                    </li>
+                                    <%}%>
+                                        <li>
+                                            <a href="/grand/grand.html?page=<%=currentPage+1>totalPage?totalPage:currentPage+1%>&pageSize=<%=pageSize%>" aria-label="Next ">
+                                                <span aria-hidden="true ">&raquo;</span>
+                                            </a>
+                                        </li>
                             </ul>
                         </nav>
                     </div>
             </div>
             <%- include('./common/foot') %>
     </div>
+
 </body>
+<script src="/js/grand.js"></script>
 
 </html>

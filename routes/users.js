@@ -40,13 +40,6 @@ router.get('/', function(req, res, next) {
                     // skip()
                     // 1 - 0     page * pageSize - pageSize
                     // 2 - 5
-                    // 3 - 10
-                    // 4- 15
-                    // db.collection('user').find().limit(5).skip(0)
-                    // db.collection('user').find().limit(5).skip(5)
-                    // db.collection('user').find().limit(5).skip(10)
-                    // db.collection('user').find().limit(5).skip(15)
-
                     db.collection('user').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data) {
                         if (err) {
                             cb(err)
@@ -156,7 +149,7 @@ router.post('/login', function(req, res) {
                     //登录成功
                     //cookier操作
                     res.cookie('nickname', data[0].nickname, {
-                        maxAge: 10 * 60 * 1000 //毫秒
+                        maxAge: 60 * 60 * 1000 //毫秒
                     })
                     res.redirect('/index.html');
                 }
@@ -270,9 +263,44 @@ router.post('/register', function(req, res) {
 
 //删除操作localhost:3000/user/delete
 router.get('/delete', function(req, res) {
-    //1.获取前端传递过来的参数
-    var id = req.query.id;
-    //2.链接数据库， 删除
+        //1.获取前端传递过来的参数
+        var id = req.query.id;
+        //2.链接数据库， 删除
+        MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
+            if (err) {
+                res.render('error', {
+                    message: '连接失败',
+                    error: err
+                })
+                return;
+            }
+            var db = client.db('project');
+            db.collection('user').deleteOne({
+                _id: ObjectId(id),
+            }, function(err, data) {
+                console.log(data);
+                if (err) {
+                    res.render('error', {
+                        message: '删除失败',
+                        error: err
+                    })
+                } else {
+                    //删除成功，页面刷新一下，也就是又跳转到users.ejs页面
+                    res.redirect('/users');
+                }
+                client.close();
+            })
+        })
+    })
+    //搜索操作localhost:3000/user/search
+router.get('/search', function(req, res) {
+    var name = req.query.name;
+    // console.log(name);
+    var filter = new RegExp(name);
+    var page = parseInt(req.query.page) || 1; // 页码
+    var pageSize = parseInt(req.query.pageSize) || 5; // 每页显示的条数
+    var totalSize = 0; // 总条数
+    var data = [];
     MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
         if (err) {
             res.render('error', {
@@ -282,22 +310,51 @@ router.get('/delete', function(req, res) {
             return;
         }
         var db = client.db('project');
-        db.collection('user').deleteOne({
-            _id: ObjectId(id),
-        }, function(err, data) {
-            console.log(data);
+        async.series([
+            function(cb) {
+                db.collection('user').find({
+                    nickname: filter
+                }).count(function(err, num) {
+                    if (err) {
+                        cb(err);
+                    } else {
+                        totalSize = num;
+                        cb(null);
+                    }
+                })
+            },
+            function(cb) {
+                db.collection('user').find({
+                    nickname: filter
+                }).limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data) {
+                    if (err) {
+                        cb(err)
+                    } else {
+                        // data = data;
+                        cb(null, data)
+                    }
+                })
+
+            }
+        ], function(err, results) {
             if (err) {
                 res.render('error', {
-                    message: '删除失败',
+                    message: '错误',
                     error: err
                 })
             } else {
-                //删除成功，页面刷新一下，也就是又跳转到users.ejs页面
-                res.redirect('/users');
+                var totalPage = Math.ceil(totalSize / pageSize); // 总页数
+
+                res.render('users', {
+                    list: results[1],
+                    // totalSize: totalSize,
+                    totalPage: totalPage,
+                    pageSize: pageSize,
+                    currentPage: page
+                })
             }
             client.close();
         })
     })
 })
-
 module.exports = router;

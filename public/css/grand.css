@@ -5,6 +5,7 @@
   display: flex;
   background: white; }
   .gao-main .body {
+    position: relative;
     flex: 1;
     padding: 0; }
     .gao-main .body .addGrand {
@@ -23,8 +24,39 @@
         .gao-main .body .grandtable table thead th {
           text-align: center; }
         .gao-main .body .grandtable table tbody th {
-          text-align: center; }
+          text-align: center;
+          vertical-align: middle; }
+        .gao-main .body .grandtable table tbody td {
+          text-align: center;
+          vertical-align: middle; }
+          .gao-main .body .grandtable table tbody td .a1:hover {
+            color: red; }
+        .gao-main .body .grandtable table tbody img {
+          width: 150px;
+          height: 150px;
+          vertical-align: middle; }
     .gao-main .body .grandnav {
+      float: right;
       margin-right: 20px; }
+    .gao-main .body .filter {
+      position: absolute;
+      border: 1px solid #ccc;
+      left: 200px;
+      top: 20px;
+      height: 300px;
+      width: 350px;
+      background: white;
+      padding: 20px 20px 20px 50px;
+      display: none; }
+      .gao-main .body .filter h2 {
+        color: pink;
+        font-size: 20px;
+        text-align: center; }
+      .gao-main .body .filter input {
+        margin-top: 20px; }
+      .gao-main .body .filter #sure {
+        background: aqua; }
+      .gao-main .body .filter #no {
+        background: aqua; }
 
 /*# sourceMappingURL=grand.css.map */
