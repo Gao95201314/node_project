@@ -42,7 +42,7 @@ router.get('/grand.html', function(req, res, next) {
                 })
             },
             function(cb) {
-                db.collection('grand').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data) {
+                db.collection('grand').find().sort({ _id: -1 }).limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data) {
                     if (err) {
                         cb(err)
                     } else {
@@ -90,7 +90,7 @@ router.get('/delete', function(req, res) {
         db.collection('grand').deleteOne({
             _id: ObjectId(id),
         }, function(err, data) {
-            console.log(data);
+            // console.log(data);
             if (err) {
                 res.render('error', {
                     message: '删除失败',

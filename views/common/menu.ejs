@@ -1,5 +1,15 @@
 <ul class="gao-menu">
-    <li><a href="/users">用户管理</a></li>
+    <li id="a1"><a href="/users">用户管理</a></li>
     <li><a href="/grand/grand.html">品牌管理</a></li>
     <li><a href="/phone/phone.html">手机管理</a></li>
 </ul>
+<script>
+    var cookieVal = document.cookie;
+    var cookieArr = cookieVal.split(";");
+    var newArr = cookieArr[0].split("=")[1];
+    console.log(newArr);
+    var a1 = document.getElementById('a1');
+    if (newArr == 'false') {
+        a1.remove();
+    }
+</script>

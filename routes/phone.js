@@ -42,7 +42,7 @@ router.get('/phone.html', function(req, res, next) {
                 })
             },
             function(cb) {
-                db.collection('phone').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data) {
+                db.collection('phone').find().sort({ _id: -1 }).limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data) {
                     if (err) {
                         cb(err)
                     } else {
@@ -114,7 +114,7 @@ router.post('/addphone', upload.single('phoneimg'), function(req, res, next) {
     var phonegrand = req.body.phonegrand;
     var phoneprice = req.body.phoneprice;
     var phoneoldprice = req.body.phoneoldprice;
-    console.log(req.file);
+    // console.log(req.file);
     //如果想要通过浏览器访问到这张图片的话， 需要将图片放到public里面去
     var phoneimg = 'images/' + new Date().getTime() + '_' + req.file.originalname;
     var newphoneimg = path.resolve(__dirname, '../public/', phoneimg);
@@ -136,7 +136,7 @@ router.post('/addphone', upload.single('phoneimg'), function(req, res, next) {
                 phonename: phonename,
                 phonegrand: phonegrand,
                 phoneprice: phoneprice,
-                phoneoldprice: phoneprice,
+                phoneoldprice: phoneoldprice,
                 phoneimg: phoneimg
             }, function(err, data) {
                 // console.log(data);
@@ -190,7 +190,7 @@ router.get('/findandupdate', function(req, res) {
                 })
             },
             function(cb) {
-                db.collection('phone').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data1) {
+                db.collection('phone').find().sort({ _id: -1 }).limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err, data1) {
                     if (err) {
                         cb(err)
                     } else {
@@ -244,46 +244,84 @@ router.post('/updatephone', upload.single('phoneimg'), function(req, res, next) 
     var phonegrand = req.body.phonegrand;
     var phoneprice = req.body.phoneprice;
     var phoneoldprice = req.body.phoneoldprice;
+    // console.log(req.file);
     //如果想要通过浏览器访问到这张图片的话， 需要将图片放到public里面去
-    var phoneimg = 'images/' + new Date().getTime() + '_' + req.file.originalname;
-    var newphoneimg = path.resolve(__dirname, '../public/', phoneimg);
-
+    if (req.file) {
+        var phoneimg = 'images/' + new Date().getTime() + '_' + req.file.originalname;
+        var newphoneimg = path.resolve(__dirname, '../public/', phoneimg);
+    }
     try {
-        var data = fs.readFileSync(req.file.path);
-        fs.writeFileSync(newphoneimg, data);
-        //2.连接数据库， 新增
-        MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
-            if (err) {
-                res.render('error', {
-                    message: '连接失败',
-                    error: err
-                })
-                return;
-            }
-            var db = client.db('project');
-            db.collection('phone').updateOne({ _id: ObjectId(id) }, {
-                    $set: {
-                        phonename: phonename,
-                        phonegrand: phonegrand,
-                        phoneprice: phoneprice,
-                        phoneoldprice: phoneoldprice,
-                        phoneimg: phoneimg
-                    }
-                },
-                function(err, data) {
-                    // console.log(data);
-                    if (err) {
-                        res.render('error', {
-                            message: '更新失败',
-                            error: err
-                        })
-                    } else {
-                        //更新成功，页面刷新一下，也就是又跳转到phone.ejs页面
-                        res.redirect('/phone/phone.html');
-                    }
-                    client.close();
-                })
-        })
+        if (req.file) {
+            var data = fs.readFileSync(req.file.path);
+            fs.writeFileSync(newphoneimg, data);
+            //2.连接数据库，修改 如果有上传图片就更新
+            MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
+                if (err) {
+                    res.render('error', {
+                        message: '连接失败',
+                        error: err
+                    })
+                    return;
+                }
+                var db = client.db('project');
+                db.collection('phone').updateOne({ _id: ObjectId(id) }, {
+                        $set: {
+                            phonename: phonename,
+                            phonegrand: phonegrand,
+                            phoneprice: phoneprice,
+                            phoneoldprice: phoneoldprice,
+                            phoneimg: phoneimg
+                        }
+                    },
+                    function(err, data) {
+                        // console.log(data);
+                        if (err) {
+                            res.render('error', {
+                                message: '更新失败',
+                                error: err
+                            })
+                        } else {
+                            //更新成功，页面刷新一下，也就是又跳转到phone.ejs页面
+                            res.redirect('/phone/phone.html');
+                        }
+                        client.close();
+                    })
+            })
+        } else {
+            //2.连接数据库， 新增  如果没有上传图片就不更新
+            MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
+                if (err) {
+                    res.render('error', {
+                        message: '连接失败',
+                        error: err
+                    })
+                    return;
+                }
+                var db = client.db('project');
+                db.collection('phone').updateOne({ _id: ObjectId(id) }, {
+                        $set: {
+                            phonename: phonename,
+                            phonegrand: phonegrand,
+                            phoneprice: phoneprice,
+                            phoneoldprice: phoneoldprice
+                        }
+                    },
+                    function(err, data) {
+                        // console.log(data);
+                        if (err) {
+                            res.render('error', {
+                                message: '更新失败',
+                                error: err
+                            })
+                        } else {
+                            //更新成功，页面刷新一下，也就是又跳转到phone.ejs页面
+                            res.redirect('/phone/phone.html');
+                        }
+                        client.close();
+                    })
+            })
+        }
+
     } catch (error) {
         res.render('error', {
             message: '更新失败',

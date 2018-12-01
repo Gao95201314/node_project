@@ -12,7 +12,7 @@ var path = require('path');
 
 /* GET home page. */
 router.get('/quit', function(req, res, next) {
-    res.cookie('nickname', '', { expires: new Date(0) });
-    res.redirect('/index.html');
+    res.cookie('username', '', { expires: new Date(0) });
+    res.redirect('/');
 });
 module.exports = router;
